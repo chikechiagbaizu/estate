@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- Form View -->
+    <record id="estate_property_form_view" model="ir.ui.view">
+        <field name="name">estate.property.form.view</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <group>
+                            <field name="postcode" />
+                            <field name="date_availability" />
+                        </group>
+                        <group>
+                            <field name="expected_price" />
+                            <field name="best_offer" />
+                            <field name="selling_price" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="estate_property_list_view" model="ir.ui.view">
+        <field name="name">estate.property.list.view</field>
+        <field name="model">estate.property</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" />
+                <field name="postcode" />
+                <field name="date_availability" />
+                <field name="expected_price" />
+                <field name="best_offer" />
+                <field name="selling_price" />
+            </list>
+        </field>
+    </record>
+</odoo>

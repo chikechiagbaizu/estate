@@ -19,7 +19,7 @@ The following are potential compatibility differences to check as I reach the re
 | Area | Course version | Odoo 19.0 to investigate | Section | Status |
 |---|---|---|---|---|
 | View modifiers | `attrs` in Odoo 16; direct modifiers in Odoo 17 | Direct expressions such as `invisible="state == 'done'"` | 4, 5 | To verify |
-| List view tag | `<tree>` | `<list>` | 3, 5 | To verify |
+| List view tag | `<tree>` | `<list>` | 3, 5 | Confirmed |
 | SQL constraints | `_sql_constraints` | `models.Constraint` class attributes | 4 | To verify |
 | Client-side actions | Legacy JavaScript widgets / early OWL components | Current OWL-based APIs and component patterns | 7 | To verify |
 
@@ -56,14 +56,14 @@ Odoo connects to the PostgreSQL service using the Compose hostname `web-db`, rat
 
 ### Section 3: Creating the First Odoo Application
 
-*To be documented.*
+**Confirmed difference: List view root element**
 
-For each difference encountered, I will record:
+- **Course (Odoo 16/17):** `<tree>`
+- **My implementation (Odoo 19.0):** `<list>`
+- **Reason:** Odoo 19.0 uses `<list>` as the root element for list views.
+- **Impact:** Update the view XML when porting older course examples to Odoo 19.0.
 
-- **Course implementation:** The original example from the lecture.
-- **Odoo 19.0 implementation:** The modified code, if required.
-- **Reason:** The framework change, compatibility issue, or configuration detail behind the difference.
-- **Verification:** The test or source reference used to confirm the finding.
+No other version-related differences were encountered in this section.
 
 ---
 
