@@ -1,42 +1,70 @@
 # Odoo 16/17 (Course) vs Odoo 19.0 (Mine)
 
-A running log of everything that differed between what the instructor shows (Odoo 16/17)
-and what I had to do in Odoo 19.0. Updated as I finish each section.
+A running log of differences I encounter while following Miracle Ayodele's Odoo 16/17 technical course using Odoo 19.0.
 
-**How to read an entry:** what the course does → what Odoo 19 needs → why it matters.
+This document records compatibility issues, required code changes, and environment differences as I progress through the course.
 
-> ⚠️ Entries marked **(verify)** are things I expect to hit based on Odoo's version
-> history. I confirm each one against the Odoo 19 source/docs when I reach that section,
-> then remove the marker.
+**How to read each entry:** What the course demonstrates → what I use in Odoo 19.0 → why the difference matters.
 
-## Known changes (to confirm as I go)
+> **Status guide**
+>
+> - **Confirmed:** Reproduced or verified against Odoo 19.0.
+> - **To verify:** A potential version difference that I have not yet tested.
+> - **Not applicable:** The difference does not affect my implementation.
 
-| Area | Course (16/17) | Odoo 19.0 | Section | Status |
+## Known Changes to Investigate
+
+The following are potential compatibility differences to check as I reach the relevant sections. They are not confirmed findings until I test them against Odoo 19.0.
+
+| Area | Course version | Odoo 19.0 to investigate | Section | Status |
 |---|---|---|---|---|
-| View modifiers | `attrs="{'invisible': [('state','=','done')]}"` (16); direct attributes (17) | Direct attributes only: `invisible="state == 'done'"` | 4, 5 | (verify) |
-| List view tag | `<tree>` | `<list>` | 3, 5 | (verify) |
-| SQL constraints | `_sql_constraints = [(...)]` | `models.Constraint(...)` class attributes | 4 | (verify) |
-| Client actions / JS | Legacy widgets (16) / early OWL (17) | OWL components | 7 | (verify) |
+| View modifiers | `attrs` in Odoo 16; direct modifiers in Odoo 17 | Direct expressions such as `invisible="state == 'done'"` | 4, 5 | To verify |
+| List view tag | `<tree>` | `<list>` | 3, 5 | To verify |
+| SQL constraints | `_sql_constraints` | `models.Constraint` class attributes | 4 | To verify |
+| Client-side actions | Legacy JavaScript widgets / early OWL components | Current OWL-based APIs and component patterns | 7 | To verify |
 
-## Log by section
+**Note:** Version history provides useful clues, but actual findings should be based on reproducible tests or the Odoo 19.0 source code and documentation.
+
+## Log by Section
 
 ### Section 1: Introduction
-*No code differences.*
 
-### Section 2: Environment setup
+No code differences encountered.
 
-This course uses **Docker Compose** to run Odoo 19 and PostgreSQL 15 in separate containers.
+### Section 2: Environment Setup
 
-- **Odoo:** `odoo:19.0`
-- **Database:** `postgres:15-alpine`
-- **Python:** Bundled with the Odoo Docker image.
-- **Access URL:** `http://localhost:8070`
-- **Configuration:** `odoo.conf`, mounted into the Odoo container.
-- **Custom addons:** `./custom_addons` mounted at `/mnt/extra-addons`.
-- **Persistent storage:** Docker named volumes for database and Odoo data.
-- **Development settings:** `--dev=all` and `--workers=0`.
+This course uses **Docker Compose** to run Odoo 19.0 and PostgreSQL 15 in separate containers.
 
-**Comparison with native installation:** In a native setup, Odoo, its Python dependencies, and PostgreSQL are installed and managed directly on the host operating system. In this course, Docker containers provide the application and database environments, reducing host-level installation and dependency-management requirements. Odoo connects to PostgreSQL through the Docker Compose service hostname `web-db`.
+| Component | Configuration |
+|---|---|
+| Odoo image | `odoo:19.0` |
+| PostgreSQL image | `postgres:15-alpine` |
+| Python | Bundled with the Odoo image |
+| Access URL | `http://localhost:8070` |
+| Configuration file | `odoo.conf`, mounted into the container |
+| Custom addons | `./custom_addons` → `/mnt/extra-addons` |
+| Persistent storage | Docker named volumes for Odoo and PostgreSQL data |
+| Development options | `--dev=all`, `--workers=0` |
 
-### Section 3: First Odoo application
-*(to fill in)*
+**Docker Compose vs native installation**
+
+In a native installation, Odoo, its Python dependencies, and PostgreSQL are installed and managed directly on the host operating system. With Docker Compose, Odoo and PostgreSQL run in separate containers, reducing host-level dependency management and helping maintain a reproducible environment.
+
+Odoo connects to the PostgreSQL service using the Compose hostname `web-db`, rather than `localhost`.
+
+**Environment-specific note:** The commands and paths used in this repository reflect my Docker Compose configuration. Developers running Odoo from source with a Python virtual environment must adapt the configuration file, database connection settings, and addons paths to their own environment.
+
+### Section 3: Creating the First Odoo Application
+
+*To be documented.*
+
+For each difference encountered, I will record:
+
+- **Course implementation:** The original example from the lecture.
+- **Odoo 19.0 implementation:** The modified code, if required.
+- **Reason:** The framework change, compatibility issue, or configuration detail behind the difference.
+- **Verification:** The test or source reference used to confirm the finding.
+
+---
+
+*This document will be updated as I progress through the course. Only tested or source-verified findings will be marked as confirmed.*

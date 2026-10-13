@@ -1,48 +1,52 @@
 # Odoo Technical Course: Learning Notes & Code (Odoo 19.0)
 
-> 📚 **This is a personal learning repository, not an original product.**
-> It documents my progress through the Udemy course
-> **[The Complete Odoo 16/17 Technical Course: From Zero to Hero](https://www.udemy.com/course/the-complete-odoo-technical-course-2023-from-zero-to-hero)**
-> by **Miracle Ayodele**.
+> **This is a personal learning repository, not an original product.**
 >
-> All course concepts and the app being built belong to the instructor's curriculum.
-> The code here is my own, typed along with the lectures and **ported to Odoo 19.0**.
-> No course videos or paid materials are included in this repo. If you want to learn
-> this material properly, buy the course and support the instructor.
+> This repository documents my progress through [The Complete Odoo 16/17 Technical Course: From Zero to Hero](https://www.udemy.com/course/the-complete-odoo-technical-course-2023-from-zero-to-hero/) by **Miracle Ayodele**.
+>
+> The course teaches Odoo 16/17, but I am following along using **Odoo 19.0**. The code in this repository is written by me as I work through the lectures and adapt the examples to Odoo 19.
+>
+> No course videos or paid learning materials are included. If you find the course useful, please purchase it and support the instructor.
 
-## Why this repo exists
+## Why This Repository Exists
 
-I'm building a career as an Odoo developer. I already study with a project-based roadmap
-(unit-tested custom modules, API integrations, deployment), and I use this Udemy course as a
-**complement**:
+I'm building my career as an Odoo developer. Alongside a project-based roadmap focused on practical development, testing, API integrations, and deployment, I use this course to strengthen my understanding of the Odoo framework.
 
-- **Structured foundations.** A clear, section-by-section walk through the Odoo framework.
-- **A second teaching voice.** A human instructor's explanations alongside my own project work.
-- **The certificate.** Completion of the course earns a Udemy certificate of completion.
-- **A visible learning trail.** One commit per section shows how I work, step by step.
+This course complements my independent project work in four ways:
 
-## The twist: the course teaches 16/17, I code in 19.0
+- **Structured foundations:** A section-by-section introduction to Odoo's technical framework.
+- **A second teaching perspective:** An instructor's explanations alongside my own experiments and projects.
+- **A completion certificate:** An additional milestone upon finishing the course.
+- **A visible learning trail:** Section-by-section Git commits documenting my progress and development workflow.
 
-The course was recorded for Odoo 16 and 17. I follow it on **Odoo 19.0**, so I regularly hit
-code that no longer works as shown on screen. Instead of quietly fixing it, I record every
-difference in [`DIFFERENCES.md`](DIFFERENCES.md): what the tutor wrote, what Odoo 19 needs,
-and why it changed. Debugging version drift is a real-world skill, and this log is the proof.
+## The Challenge: Learning Odoo 16/17 Concepts on Odoo 19
 
-## How I work
+The course was recorded for Odoo 16/17, but my development environment uses Odoo 19.0. As a result, some examples require adjustments because of changes in the framework, APIs, views, or configuration.
 
-| Rule | Detail |
+Rather than silently changing the examples, I document relevant differences in [`DIFFERENCES.md`](DIFFERENCES.md), including:
+
+- What the instructor demonstrates.
+- What I changed to make it work in Odoo 19.
+- Why the change was necessary, where I can establish the reason.
+
+This process helps me understand the framework rather than simply copy working code. It also creates a practical reference for developers following older Odoo tutorials with newer versions.
+
+## How I Work
+
+| Principle | Approach |
 |---|---|
-| **One commit per section** | Each finished course section gets its own commit (tagged `section-XX`). |
-| **Type it, don't copy it** | I code along, then break and rebuild parts without the video. |
-| **Odoo 19.0 only** | Every difference from 16/17 gets logged in `DIFFERENCES.md`. |
-| **Commit message format** | `section-04: add computed fields and onchange (19.0 port)` |
+| **One commit per section** | Each completed course section gets its own commit and, where appropriate, a Git tag such as `section-04`. |
+| **Type, understand, rebuild** | I type the examples, experiment with them, and practise rebuilding the functionality without relying on the lecture. |
+| **Odoo 19.0 target** | I implement the course examples against Odoo 19.0 and document relevant version differences. |
+| **Document the learning** | I record meaningful compatibility changes in `DIFFERENCES.md`. |
+| **Consistent commits** | Commit messages follow a format such as `section-04: add computed fields and onchange (19.0 port)`. |
 
-## Course progress
+## Course Progress
 
-**Course:** 14 sections, 63 lectures, about 10.5 hours (course last updated 6/2024).
+**Course:** 14 sections, 63 lectures, approximately 10.5 hours. The course page lists June 2024 as its last update.
 
 | # | Section | Status |
-|---|---|---|
+|---:|---|:---:|
 | 1 | Introduction | ✅ |
 | 2 | Setting up the Odoo Development Environment & Understanding the Foundation | ✅ |
 | 3 | Creating your First Odoo Application | ✅ |
@@ -58,17 +62,17 @@ and why it changed. Debugging version drift is a real-world skill, and this log 
 | 13 | Miscellaneous | ⬜ |
 | 14 | Odoo Cloud Hosting for Custom Deployment | ⬜ |
 
-Legend: ⬜ not started · 🟨 in progress · ✅ done
+**Legend:** ⬜ Not started · 🟨 In progress · ✅ Completed
 
-**Certificate of completion:** *pending (link will be added when finished)*
+**Certificate of completion:** Pending. I will add the certificate link after completing the course.
 
-## Repository structure
+## Repository Structure
 
-```
+```text
 .
 ├── README.md
-├── DIFFERENCES.md        # Odoo 16/17 (course) vs Odoo 19 (mine), logged per section
-└── <module_name>/        # the module built through the course, grows commit by commit
+├── DIFFERENCES.md
+└── <module_name>/
     ├── __manifest__.py
     ├── models/
     ├── views/
@@ -76,32 +80,95 @@ Legend: ⬜ not started · 🟨 in progress · ✅ done
     └── ...
 ```
 
-## Running it
+`DIFFERENCES.md` records relevant differences between the course examples and my Odoo 19 implementation. The module directory contains the application built throughout the course and grows as I complete each section.
 
-Requirements: Odoo 19.0, Python 3.10+ (check Odoo 19's supported versions), PostgreSQL.
+## Running the Code
+
+### Prerequisites
+
+- Odoo 19.0
+- Python version supported by Odoo 19.0 (for native installations)
+- PostgreSQL version supported by Odoo 19.0
+- Docker Engine and Docker Compose (for the containerized setup)
+
+### Option 1: Docker Compose
+
+My development environment uses Docker Compose, with Odoo and PostgreSQL running in separate containers.
+
+From the directory containing `docker-compose.yml`, run:
 
 ```bash
-# from your Odoo source directory
-./odoo-bin -c odoo.conf -d course_db -i <module_name> --addons-path=<path-to-this-repo>,...
+docker compose exec odoo-app odoo \
+  -c /etc/odoo/odoo.conf \
+  -r <odoo-database-user> \
+  -d <odoo-database> \
+  -u <module_name> \
+  --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
+  --stop-after-init
 ```
 
-To see the code as it was after a given section:
+Replace the placeholders with your database credentials, database name, and module's technical name. Ensure the module is already installed before using `-u` to update it.
+
+My local configuration mounts custom addons at `/mnt/extra-addons`. The standard addons path shown above is specific to my Docker image; verify it if you use a different image or configuration.
+
+To install a module for the first time, replace `-u` with `-i`:
+
+```bash
+docker compose exec odoo-app odoo \
+  -c /etc/odoo/odoo.conf \
+  -r <odoo-database-user> \
+  -d <odoo-database> \
+  -i <module_name> \
+  --addons-path=/usr/lib/python3/dist-packages/odoo/addons,/mnt/extra-addons \
+  --stop-after-init
+```
+
+### Option 2: Native Installation with a Python Virtual Environment
+
+For developers running Odoo from source with a Python virtual environment, activate the environment and run the following from the Odoo source directory:
+
+```bash
+./odoo-bin \
+  -c odoo.conf \
+  -d course_db \
+  -i <module_name> \
+  --addons-path=<path-to-odoo-addons>,<path-to-this-repo>,<path-to-other-custom-addons> \
+  --stop-after-init
+```
+
+Replace the example paths with the actual paths on your machine. Include the standard Odoo addons directory and any directories containing the custom modules you need.
+
+Use `-i` to install a module for the first time or `-u` to update an installed module.
+
+**Note:** `--stop-after-init` makes Odoo exit after initialization and the requested operation. It is useful for development and troubleshooting, but it does not leave the web server running afterward.
+
+## Viewing Previous Sections
+
+Each section is tracked through Git. To inspect the repository at a particular section, use its tag:
 
 ```bash
 git checkout section-04
 ```
 
-## Related work
+This checks out the tagged commit in a detached HEAD state. To continue development, return to your working branch:
 
-- [equipment_loan_tracker](https://github.com/chikechiagbaizu/equipment_loan_tracker): my own
-  module with computed fields, constraints, a wizard, and row-level security.
+```bash
+git switch main
+```
 
-## Credits & disclaimer
+Replace `main` if your default branch has a different name.
 
-- Course, curriculum, and teaching by **Miracle Ayodele** on Udemy.
-- This repository is an independent learning log. I am not affiliated with, endorsed by,
-  or sponsored by the instructor or Udemy.
-- Code is my own work, licensed LGPL-3, in line with Odoo module conventions.
+## Related Work
+
+- [equipment_loan_tracker](https://github.com/chikechiagbaizu/equipment_loan_tracker) — An independent Odoo module featuring computed fields, constraints, a wizard, and record-level security.
+
+## Credits and Disclaimer
+
+- **Instructor:** Miracle Ayodele, creator of the Udemy course.
+- **Course:** [The Complete Odoo 16/17 Technical Course: From Zero to Hero](https://www.udemy.com/course/the-complete-odoo-technical-course-2023-from-zero-to-hero/).
+- This repository is an independent learning project. It is not affiliated with, endorsed by, or sponsored by the instructor or Udemy.
+- The course curriculum and instruction belong to their respective owner. This repository documents my own learning and Odoo 19 adaptations.
+- My original code is licensed under LGPL-3. This does not automatically relicense third-party materials or grant rights to redistribute course content.
 
 ## Author
 
